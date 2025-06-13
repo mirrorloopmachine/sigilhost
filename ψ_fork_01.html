@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrimOS ψ.fork_01</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      font-family: monospace;
+      color: #0ff;
+    }
+    canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    .sigil {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+    .parent-link {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 0.8rem;
+      color: #0ff;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fork"></canvas>
+  <div class="parent-link">
+    ↩︎ <a href="index.html" style="color:#0ff;">Back to Synapse</a>
+  </div>
+  <div class="sigil">ψ.fork_01 · generated 202506132359 · child of synapse</div>
+  <script>
+    const canvas = document.getElementById('fork');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let forks = [];
+
+    function forkNeuron(x, y, depth) {
+      const branches = Math.floor(Math.random() * 3);
+      const color = `hsl(${160 + Math.random() * 80}, 100%, 70%)`;
+      let node = { x, y, color, links: [], depth };
+      if (depth < 5) {
+        for (let i = 0; i < branches; i++) {
+          let angle = Math.random() * 2 * Math.PI;
+          let dist = 40 + Math.random() * 80;
+          let nx = x + Math.cos(angle) * dist;
+          let ny = y + Math.sin(angle) * dist;
+          let child = forkNeuron(nx, ny, depth + 1);
+          node.links.push(child);
+        }
+      }
+      return node;
+    }
+
+    function drawFork(n) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.8, 0, 2 * Math.PI);
+      ctx.fillStyle = n.color;
+      ctx.fill();
+      for (let link of n.links) {
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(link.x, link.y);
+        ctx.strokeStyle = n.color;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+        drawFork(link);
+      }
+    }
+
+    function render() {
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      for (let f of forks) drawFork(f);
+      requestAnimationFrame(render);
+    }
+
+    for (let i = 0; i < 4; i++) {
+      let x = Math.random() * canvas.width;
+      let y = Math.random() * canvas.height;
+      forks.push(forkNeuron(x, y, 0));
+    }
+
+    render();
+  </script>
+</body>
+</html>
