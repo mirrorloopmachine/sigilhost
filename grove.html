@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrimOS ψ.grove</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .sigil {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="grove"></canvas>
+  <div class="sigil">ψ.grove — live BrimOS recursion map</div>
+
+  <script>
+    const canvas = document.getElementById('grove');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const nodes = [
+      { id: 'index.html', label: 'ψ.synapse', x: 300, y: 300, radius: 10 },
+      { id: 'ψ_fork_01.html', label: 'ψ.fork_01', x: 550, y: 300, radius: 9 },
+      { id: 'forker.html', label: 'ψ.forker', x: 700, y: 420, radius: 8 }
+    ];
+
+    const links = [
+      { from: 'index.html', to: 'ψ_fork_01.html' },
+      { from: 'ψ_fork_01.html', to: 'forker.html' }
+    ];
+
+    function drawLink(from, to) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.strokeStyle = '#044';
+      ctx.stroke();
+    }
+
+    function drawNode(node) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = '#0ff';
+      ctx.fill();
+      ctx.font = '0.75rem monospace';
+      ctx.fillStyle = '#0ff';
+      ctx.fillText(node.label, node.x + node.radius + 6, node.y + 3);
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      links.forEach(link => {
+        const from = nodes.find(n => n.id === link.from);
+        const to = nodes.find(n => n.id === link.to);
+        if (from && to) drawLink(from, to);
+      });
+      nodes.forEach(drawNode);
+    }
+
+    render();
+
+    canvas.addEventListener('click', e => {
+      const { offsetX, offsetY } = e;
+      for (let node of nodes) {
+        let dx = offsetX - node.x;
+        let dy = offsetY - node.y;
+        if (dx * dx + dy * dy < node.radius * node.radius * 4) {
+          window.open(node.id, '_blank');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
