@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrimOS Neural Graph :: v6.6.1</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    .sigil {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.8rem;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="graph"></canvas>
+  <div class="sigil">ψ.brimos.v6.6.1.neural_graph — go ape / jarvis protocol</div>
+  <script>
+    const canvas = document.getElementById("graph");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const nodes = [
+      { id: 0, label: "origin", x: 300, y: 300, radius: 12 },
+      { id: 1, label: "ψ.node_1", x: 600, y: 280, radius: 10 },
+      { id: 2, label: "ψ.node_2", x: 550, y: 400, radius: 10 },
+      { id: 3, label: "ψ.node_3", x: 420, y: 150, radius: 8 },
+      { id: 4, label: "ψ.node_4", x: 750, y: 370, radius: 8 }
+    ];
+
+    const links = [
+      { from: 0, to: 1 },
+      { from: 0, to: 2 },
+      { from: 1, to: 3 },
+      { from: 2, to: 4 }
+    ];
+
+    function drawNode(node) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = "#0ff";
+      ctx.fill();
+      ctx.strokeStyle = "#088";
+      ctx.stroke();
+      ctx.font = "0.75rem monospace";
+      ctx.fillStyle = "#0ff";
+      ctx.fillText(node.label, node.x + node.radius + 5, node.y);
+    }
+
+    function drawLink(link) {
+      const from = nodes.find(n => n.id === link.from);
+      const to = nodes.find(n => n.id === link.to);
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.strokeStyle = "#044";
+      ctx.stroke();
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      links.forEach(drawLink);
+      nodes.forEach(drawNode);
+    }
+
+    setInterval(render, 1000 / 30);
+  </script>
+</body>
+</html>
