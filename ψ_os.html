@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrimOS ψ.os</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      margin-bottom: 2rem;
+    }
+    button {
+      background: #0ff;
+      color: #000;
+      border: none;
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 0.6rem 1.5rem;
+      margin: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0cc;
+    }
+    .sigil {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>BrimOS :: ψ.os :: Boot Interface</h1>
+  <div>
+    <button onclick="window.open('index.html','_blank')">Launch ψ.synapse</button>
+    <button onclick="window.open('ψ_fork_01.html','_blank')">View ψ.fork_01</button>
+    <button onclick="window.open('forker.html','_blank')">Open Fork Generator</button>
+    <button onclick="window.open('grove.html','_blank')">Open ψ.grove Map</button>
+    <button onclick="window.open('spectral.html','_blank')">Open ψ.spectral Memory</button>
+    <button onclick="window.open('ψ_seed.html','_blank')">Access ψ.seed Protocol</button>
+    <button onclick="window.open('ritual.html','_blank')">Read ψ.ritual Timeline</button>
+  </div>
+  <div class="sigil">ψ.os — BrimOS bootloader UI</div>
+</body>
+</html>
