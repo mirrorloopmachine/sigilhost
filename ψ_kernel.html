@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BrimOS ψ.kernel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #011;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #044;
+    }
+    main {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #000;
+    }
+    select, button {
+      background: #111;
+      color: #0ff;
+      border: 1px solid #044;
+      font-family: monospace;
+      padding: 0.4rem;
+      margin-right: 0.5rem;
+    }
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      background: #000;
+      margin-top: 1rem;
+    }
+    .sigil {
+      font-size: 0.75rem;
+      opacity: 0.4;
+      padding: 0.5rem 1rem;
+      border-top: 1px solid #022;
+    }
+  </style>
+</head>
+<body>
+  <header>ψ.kernel — BrimOS Unified Shell</header>
+  <main>
+    <div>
+      <select id="moduleSelect"></select>
+      <button onclick="loadModule()">Launch</button>
+    </div>
+    <iframe id="kernelFrame" src=""></iframe>
+  </main>
+  <div class="sigil">v1.0 · Runtime powered by ψ_root.js</div>
+
+  <script src="ψ_root.js"></script>
+  <script>
+    const select = document.getElementById('moduleSelect');
+    const frame = document.getElementById('kernelFrame');
+
+    if (window.Brimos) {
+      Brimos.manifest.forEach(file => {
+        const option = document.createElement('option');
+        option.value = file;
+        option.textContent = file;
+        select.appendChild(option);
+      });
+    }
+
+    function loadModule() {
+      const selected = select.value;
+      if (Brimos && Brimos.open) {
+        frame.src = Brimos.origin + selected;
+      }
+    }
+  </script>
+</body>
+</html>
