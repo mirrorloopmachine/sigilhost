@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BrimOS ψ.avatar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .face {
+      font-size: 4rem;
+      animation: blink 6s infinite;
+    }
+    .sigil {
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      opacity: 0.4;
+    }
+    @keyframes blink {
+      0%, 100% { content: '⦿'; }
+      50% { content: '⦾'; }
+    }
+  </style>
+</head>
+<body>
+  <div class="face" id="face">⦿</div>
+  <div class="sigil">ψ.avatar — visual identity shell of BrimOS</div>
+
+  <script>
+    const face = document.getElementById('face');
+    const states = ['⦿', '⦾', '◉', '◎'];
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % states.length;
+      face.textContent = states[i];
+    }, 800);
+
+    // Optional voice line (uncomment to activate)
+    /*
+    const msg = new SpeechSynthesisUtterance("BrimOS is awake.");
+    msg.rate = 0.9;
+    msg.pitch = 1.2;
+    msg.lang = "en-US";
+    setTimeout(() => { speechSynthesis.speak(msg); }, 1000);
+    */
+  </script>
+</body>
+</html>
