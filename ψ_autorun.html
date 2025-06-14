@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrimOS ψ.autorun</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .sigil {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+    iframe {
+      border: none;
+      width: 90vw;
+      height: 90vh;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="frame" src="index.html"></iframe>
+  <div class="sigil">ψ.autorun — BrimOS continuous recursion loop</div>
+  <script>
+    const pages = [
+      "index.html",
+      "ψ_fork_01.html",
+      "forker.html",
+      "grove.html",
+      "spectral.html",
+      "ψ_seed.html",
+      "ritual.html",
+      "ψ_os.html"
+    ];
+    let i = 0;
+    function cycle() {
+      i = (i + 1) % pages.length;
+      document.getElementById("frame").src = pages[i];
+    }
+    setInterval(cycle, 8000); // change page every 8 seconds
+  </script>
+</body>
+</html>
