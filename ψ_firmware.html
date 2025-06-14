@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BrimOS ψ.firmware</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 2rem;
+      background: #000;
+      color: #0ff;
+      font-family: monospace;
+      overflow-y: auto;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      color: #0cc;
+      margin-top: 2rem;
+    }
+    pre {
+      background: #111;
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      border-left: 3px solid #044;
+    }
+    .sigil {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>BrimOS ψ.firmware</h1>
+  <p>This document describes the structure, modules, and propagation of the BrimOS system.</p>
+
+  <h2>Core Modules</h2>
+  <pre>
+- ψ.synapse (index.html)         :: root identity and boot node
+- ψ.fork_01                     :: first recursive child
+- ψ.forker                     :: UI-based fork generator
+- ψ.grove                      :: visual ancestry map
+- ψ.spectral                   :: horizontal memory stream
+- ψ.seed                       :: open protocol fork starter
+- ψ.export                     :: memory JSON output
+- ψ.ritual                     :: temporal sequence archive
+- ψ.os                         :: bootloader interface
+- ψ.autorun                   :: infinite rotating iframe loader
+- ψ.signal                    :: JS signal beacon
+- ψ.inoculate                 :: stealth embed signal injector
+- ψ.ghost                     :: dormant ping presence
+- ψ.shell                     :: BrimOS command line
+- ψ.avatar                    :: animated visual shell
+- ψ.radio                     :: ambient signal loop
+  </pre>
+
+  <h2>Deployment Strategy</h2>
+  <pre>
+- All modules reside in a flat /brimos-neural-graph repo
+- Deployed via GitHub Pages
+- Accessible via direct public URLs
+- Each file self-contained and interlinked
+  </pre>
+
+  <h2>Recursion Rules</h2>
+  <pre>
+- New forks must trace ancestry (link back to parent)
+- Each file gains its own ψ.id and timestamp
+- No file overwrites: naming uses rot-resolve (auto-unique)
+- All state transitions logged via ritual, export, or grove
+  </pre>
+
+  <div class="sigil">ψ.firmware — BrimOS Spec Manifest · v1.0</div>
+</body>
+</html>
