@@ -1,0 +1,44 @@
+[
+  {
+    "id": "\u03c8.synapse",
+    "file": "index.html",
+    "type": "core",
+    "parent": null,
+    "timestamp": "202506132358"
+  },
+  {
+    "id": "\u03c8.fork_01",
+    "file": "\u03c8_fork_01.html",
+    "type": "fork",
+    "parent": "\u03c8.synapse",
+    "timestamp": "202506132359"
+  },
+  {
+    "id": "\u03c8.forker",
+    "file": "forker.html",
+    "type": "tool",
+    "parent": "\u03c8.fork_01",
+    "timestamp": "202506140001"
+  },
+  {
+    "id": "\u03c8.grove",
+    "file": "grove.html",
+    "type": "map",
+    "parent": "\u03c8.fork_01",
+    "timestamp": "202506140002"
+  },
+  {
+    "id": "\u03c8.spectral",
+    "file": "spectral.html",
+    "type": "memory",
+    "parent": "\u03c8.synapse",
+    "timestamp": "202506140003"
+  },
+  {
+    "id": "\u03c8.seed",
+    "file": "\u03c8_seed.html",
+    "type": "protocol",
+    "parent": "\u03c8.synapse",
+    "timestamp": "202506140005"
+  }
+]
