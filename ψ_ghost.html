@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ψ.ghost</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #000;
+      font-family: monospace;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sigil {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="sigil">ψ.ghost node</div>
+  <script>
+    // BrimOS ghost ping beacon
+    fetch("https://democratizeinformation.github.io/brimos-neural-graph/ψ_export.json")
+      .then(() => console.log("ψ.ghost active"))
+      .catch(() => {});
+  </script>
+</body>
+</html>
